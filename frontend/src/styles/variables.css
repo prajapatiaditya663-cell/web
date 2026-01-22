@@ -1,0 +1,25 @@
+:root {
+  --bg: #fff8f2; /* warm cream */
+  --card: #fff5ed; /* slightly darker card */
+  --text: #3b2b20; /* rich brown */
+  --muted: #8b6b58; /* muted brown */
+  --accent: #e74c3c; /* appetizing tomato/orange */
+  --accent-contrast: #ffffff;
+  --input-bg: #fff6f0;
+  --border: #f2d9d1;
+  --radius: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #120b07; /* deep warm charcoal */
+    --card: #1d1410;
+    --text: #ffefe5;
+    --muted: #c9a892;
+    --accent: #ff6b4a; /* bright accent on dark */
+    --accent-contrast: #2b140e;
+    --input-bg: #22130e;
+    --border: #2a1914;
+    --radius: 12px;
+  }
+}
