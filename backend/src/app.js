@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 // Allow local dev frontends on common Vite ports (5173/5174)
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'],
+    // origin: ['http://localhost:5173', 'http://localhost:5174'],
     credentials: true,
 }));
 
