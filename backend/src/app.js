@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const foodRoutes = require('./routes/food.routes');
 const cors = require('cors');
 const foodPartnerRoutes = require('./routes/food-partner.routes');
+const { default: mongoose } = require('mongoose');
 
 const app = express();
 
@@ -16,6 +17,30 @@ app.use(cors({
     origin: ['http://localhost:5173', 'http://localhost:5174'],
     credentials: true,
 }));
+
+
+let isConnected = false;
+
+async function connectToMongoDB() {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        isConnected = true;
+        console.log('Connected to MongoDB');
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+    }
+}
+
+app.use((req, res, next) => {
+    if (!isConnected) {
+        connectToMongoDB().then(() => next());
+    } else {
+        next();
+    }
+});
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
